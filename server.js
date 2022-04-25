@@ -24,8 +24,9 @@ app.get('/auth/github', (req, res) => {
     }
   }).then(resp => {
     const {access_token} = resp.data;
-    axios.get(`https://api.github.com/user?access_token=${access_token}`, {
+    axios.get(`https://api.github.com/user`, {
       headers: {
+        'Authorization': `token ${access_token}`,
         'Accept': 'application/json'
       }
     }).then(resp => {
